@@ -82,4 +82,11 @@ public class LotoGameResource {
 			return Response.status(Status.PRECONDITION_FAILED).entity("Choose 4 or 8 numbers ").build();
 		return Response.status(200).entity(lotoBuildGameService.buildGameByDozens(firstDozen, thirdDozen)).build();
 	}
+	
+	@GET
+	@Path("avgLastConcurses/{lastConcurses}")
+	@Produces("application/json")
+	public Response getAVGLastConcurses(@PathParam("lastConcurses") Integer lastConcurses) {
+		return Response.status(200).entity(lotoBuildGameService.getAVGPairsByConcurses(lastConcurses)).build();
+	}
 }

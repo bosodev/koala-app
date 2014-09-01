@@ -122,9 +122,7 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
-
 	</dependencies>
-
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
@@ -137,7 +135,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
 	<profiles>
 		<profile>
 			<id>default</id>
@@ -153,10 +150,25 @@
 							<skip>true</skip>
 						</configuration>
 					</plugin>
+					<plugin>
+						<groupId>com.mysema.maven</groupId>
+						<artifactId>apt-maven-plugin</artifactId>
+						<version>1.0.6</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>process</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>target/generated-sources/java</outputDirectory>
+									<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
-
 		<profile>
 			<id>arq-jbossas-managed</id>
 			<dependencies>
@@ -177,7 +189,6 @@
 				</dependency>
 			</dependencies>
 		</profile>
-
 	</profiles>
 
 </project>
