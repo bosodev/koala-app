@@ -10,8 +10,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import lombok.extern.log4j.Log4j;
-
 import com.koala.constants.ConstantsRaffle;
 import com.koala.data.DataBuildGame;
 import com.koala.data.DataGameFactory;
@@ -23,11 +21,7 @@ import com.koala.views.ViewLateByNumber;
 import com.koala.views.ViewNumberLessDrawn;
 import com.koala.views.ViewNumberMoreDrawn;
 import com.mysema.query.jpa.impl.JPAQuery;
-import com.mysema.query.sql.HSQLDBTemplates;
-import com.mysema.query.sql.SQLQuery;
-import com.mysema.query.sql.SQLTemplates;
 
-@Log4j
 @Stateless
 public class LotoBuildGameService {
 

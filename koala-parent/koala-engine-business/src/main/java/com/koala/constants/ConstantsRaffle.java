@@ -1,12 +1,13 @@
 package com.koala.constants;
 
 
+
 public class ConstantsRaffle {
 
 	public static Integer TOTAL_NUMBERS_LOTO_MIN_PLAY = 15;
 
 	public static Integer TOTAL_NUMBERS_LOTO = 25;
-
+	
 	public static String SITE_RESULTS = System.getProperty("caixa.url.loto.resultszip");
 
 	public static String PATH_LOCAL = System.getProperty("file.download.linux");

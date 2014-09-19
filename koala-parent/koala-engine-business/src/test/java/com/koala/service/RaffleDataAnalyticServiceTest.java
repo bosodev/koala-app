@@ -52,6 +52,10 @@ public class RaffleDataAnalyticServiceTest {
 		raffle.setBall15(25);
 		return raffle;
 	}
+	
+	private void getDefaultRaffleBuilder() {
+	}
+	
 
 	@Test
 	public void getSumNumbers() {
