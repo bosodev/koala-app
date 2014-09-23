@@ -6,8 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -15,11 +17,16 @@ import java.util.TreeSet;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import com.koala.constants.ConstantsRaffle;
 import com.koala.entity.Raffle;
 import com.koala.utils.DateUtils;
 
 @Stateless
+@AllArgsConstructor
+@NoArgsConstructor
 public class LotoImportService {
 
 	private static final String EMPTY = "";
@@ -33,7 +40,7 @@ public class LotoImportService {
 	@EJB
 	private FileLotoService fileLotoService;
 
-	private File getFileHTMLFromPath() throws FileNotFoundException {
+	protected File getFileHTMLFromPath() throws FileNotFoundException {
 		fileLotoService.downloadAndUnzip();
 		File fileHtml = new File(ConstantsRaffle.PATH_LOCAL + File.separator + ConstantsRaffle.FILE_HTML_DEFAULT_NAME);
 		if (fileHtml.exists())
@@ -42,42 +49,42 @@ public class LotoImportService {
 			throw new FileNotFoundException();
 	}
 
-	public Collection<Raffle> readHtmlFile() throws IOException, ParseException {
+	public List<Raffle> readHtmlFile() throws IOException, ParseException {
 		File file = getFileHTMLFromPath();
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
 		List<String> data = new ArrayList<String>();
 		List<Raffle> dataObject = new ArrayList<Raffle>();
 		int trRead = 0;
-		DateUtils dateUtils = new DateUtils();
-		trRead = readLine(br, data, dataObject, trRead, dateUtils);
+		trRead = readLine(br, data, dataObject, trRead,null);
 		br.close();
 		fr.close();
 		return dataObject;
 	}
 
-	private int readLine(BufferedReader br, List<String> data, List<Raffle> dataObject, int trRead, DateUtils dateUtils) throws IOException, ParseException {
+	private int readLine(BufferedReader br, List<String> data, List<Raffle> dataObject, int trRead,String lastLine) throws IOException, ParseException {
 		while (br.ready()) {
-			String linha = br.readLine();
-			if (linha.contains(HTML_TD))
-				data.add(linha.replace(HTML_TD, EMPTY).replace(HTML_TD_CLOSE, EMPTY));
-			trRead = findRaffleData(data, dataObject, trRead, dateUtils, linha);
+			String currentLine = br.readLine();
+			if (isSomeDate(currentLine))
+				data.add(currentLine.replace(HTML_TD, EMPTY).replace(HTML_TD_CLOSE, EMPTY));
+			trRead = findRaffleData(data, dataObject, trRead, currentLine);
+			lastLine = currentLine;
 		}
 		return trRead;
 	}
 
-	private int findRaffleData(List<String> data, List<Raffle> dataObject, int trRead, DateUtils dateUtils, String linha) throws ParseException {
+	private int findRaffleData(List<String> data, List<Raffle> dataObject, int trRead, String linha) throws ParseException {
 		if (linha.contains(HTML_TR_CLOSE)) {
 			trRead++;
 			if (trRead != 1) {
-				dataObject.add(newDataObject(data, dateUtils));
+				dataObject.add(newDataObject(data));
 				data.clear();
 			}
 		}
 		return trRead;
 	}
 
-	public Raffle newDataObject(List<String> dataFile, DateUtils dateUtils) throws ParseException {
+	public Raffle newDataObject(List<String> dataFile) throws ParseException {
 		Raffle object = new Raffle();
 		if (!dataFile.isEmpty()) {
 			object.setConcurse(Integer.parseInt(dataFile.get(0)));
@@ -122,6 +129,18 @@ public class LotoImportService {
 		List<Integer> numbersRaffle = new ArrayList<Integer>();
 		numbersRaffle.addAll(numbers);
 		return numbersRaffle;
+	}
+
+	protected boolean isSomeDate(String possibleDate) {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			Date data = format.parse(possibleDate);
+			if (data != null)
+				return true;
+		} catch (ParseException e) {
+			return false;
+		}
+		return false;
 	}
 
 }

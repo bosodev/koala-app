@@ -19,6 +19,7 @@
 		<javaee.version>7.0</javaee.version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 		<version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
 		<version.jboss.bom>1.0.7.Final</version.jboss.bom>
 		<version.jboss.as>7.2.0.Final</version.jboss.as>
@@ -67,12 +68,6 @@
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
 				<version>${version.lombok}</version>
-				<scope>${module.scope}</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.mysema.querydsl</groupId>
-				<artifactId>querydsl-apt</artifactId>
-				<version>${version.querydsl}</version>
 				<scope>${module.scope}</scope>
 			</dependency>
 			<dependency>
@@ -135,7 +130,6 @@
 								<processors>
 									<processor>lombok.core.AnnotationProcessor</processor>
 									<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
-									<processor>org.mapstruct.ap.MappingProcessor</processor>
 								</processors>
 							</configuration>
 						</execution>

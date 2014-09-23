@@ -12,6 +12,7 @@ import java.util.Map;
 import org.junit.Test;
 
 import com.koala.data.DataObject;
+import com.koala.entity.Login;
 
 public class LotoAnalyticsTest {
 

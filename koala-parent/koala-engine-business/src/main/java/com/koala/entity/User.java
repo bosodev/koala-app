@@ -7,7 +7,9 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Builder;
 
+@Builder
 @Entity
 @Table(name = "XUSER")
 public class User {

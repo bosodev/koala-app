@@ -1,0 +1,44 @@
+<table class="table table-striped table-bordered">
+	<thead>
+		<tr>
+			<th class="span2 sortable" ng-class="sortClass('created')" ng-click="setSort('created')">Concurso</th>
+			<th class="span2 sortable" ng-class="sortClass('created')" ng-click="setSort('created')">Data do sorteio</th>
+			<th class="span1">Bola 1</th>
+			<th class="span1">Bola 2</th>
+			<th class="span1">Bola 3</th>
+			<th class="span1">Bola 4</th>
+			<th class="span1">Bola 5</th>
+			<th class="span1">Bola 6</th>
+			<th class="span1">Bola 7</th>
+			<th class="span1">Bola 8</th>
+			<th class="span1">Bola 9</th>
+			<th class="span1">Bola 10</th>
+			<th class="span1">Bola 11</th>
+			<th class="span1">Bola 12</th>
+			<th class="span1">Bola 13</th>
+			<th class="span1">Bola 14</th>
+			<th class="span1">Bola 15</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="app in apps">
+			<td class="text-center">{{app.concurse}}</td>
+			<td class="text-center">{{app.date}}</td>
+			<td class="text-center">{{app.ball1}}</td>
+			<td class="text-center">{{app.ball2}}</td>
+			<td class="text-center">{{app.ball3}}</td>
+			<td class="text-center">{{app.ball4}}</td>
+			<td class="text-center">{{app.ball5}}</td>
+			<td class="text-center">{{app.ball6}}</td>
+			<td class="text-center">{{app.ball7}}</td>
+			<td class="text-center">{{app.ball8}}</td>
+			<td class="text-center">{{app.ball9}}</td>
+			<td class="text-center">{{app.ball10}}</td>
+			<td class="text-center">{{app.ball11}}</td>
+			<td class="text-center">{{app.ball12}}</td>
+			<td class="text-center">{{app.ball13}}</td>
+			<td class="text-center">{{app.ball14}}</td>
+			<td class="text-center">{{app.ball15}}</td>
+		</tr>
+	</tbody>
+</table>

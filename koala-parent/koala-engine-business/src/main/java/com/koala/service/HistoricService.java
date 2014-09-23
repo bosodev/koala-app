@@ -33,6 +33,12 @@ public class HistoricService {
 	@EJB
 	private RaffleDataAnalyticService raffleDataAnalyticService;
 
+	public List<Raffle> listAllRaffles() {
+		QRaffle raffle = QRaffle.raffle;
+		JPAQuery query = new JPAQuery(entityManager);
+		return query.from(raffle).orderBy(raffle.concurse.asc()).list(raffle);
+	}
+
 	public void importHistoryRaffles() throws IOException, ParseException {
 		List<Raffle> raffles = (List<Raffle>) lotoImportService.readHtmlFile();
 		for (Raffle raffle : raffles) {

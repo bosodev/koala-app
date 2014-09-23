@@ -21,6 +21,13 @@ public class HistoricResource {
 	private HistoricService historicService;
 
 	@GET
+	@Path("allRaffles")
+	@Produces("application/json")
+	public Response allRaffles() throws IOException, ParseException {
+		return Response.status(200).entity(historicService.listAllRaffles()).build();
+	}
+
+	@GET
 	@Path("lateNumbers/{order}")
 	@Produces("application/json")
 	public Response listLateNumbers(@PathParam("order") Boolean order) throws IOException, ParseException {

@@ -7,16 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.mysema.query.annotations.QueryProjection;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.experimental.Builder;
+
+import com.mysema.query.annotations.QueryProjection;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "XRAFFLEDATA")
