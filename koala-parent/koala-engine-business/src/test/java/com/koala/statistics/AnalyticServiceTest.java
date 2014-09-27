@@ -1,4 +1,4 @@
-package com.koala.service;
+package com.koala.statistics;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -8,11 +8,12 @@ import java.util.Map;
 import org.junit.Test;
 
 import com.koala.entity.Raffle;
+import com.koala.service.AnalyticService;
 
-public class RaffleDataAnalyticServiceTest {
+public class AnalyticServiceTest {
 
-	private RaffleDataAnalyticService raffleDataService = new RaffleDataAnalyticService();
-
+	private static final AnalyticService analiticService = new AnalyticService();
+	
 	static Raffle getDefaultRaffle() {
 		Raffle raffle = new Raffle();
 		raffle.setBall1(1);
@@ -53,75 +54,56 @@ public class RaffleDataAnalyticServiceTest {
 		return raffle;
 	}
 
-	private void getDefaultRaffleBuilder() {
-	}
-
 	@Test
 	public void getSumNumbers() {
-		assertThat(raffleDataService.sumNumbers(getDefaultRaffle()),
-				equalTo(192));
+		assertThat(analiticService.sumNumbers(getDefaultRaffle()), equalTo(192));
 	}
 
 	@Test
 	public void getAverage() {
-		assertThat(raffleDataService.averageNumbers(getDefaultRaffle()),
-				equalTo(12));
+		assertThat(analiticService.averageNumbers(getDefaultRaffle()), equalTo(12));
 	}
 
 	@Test
 	public void getTotalPair() {
-		Map<String, Integer> numbers = raffleDataService
-				.getPairInteger(getDefaultRaffle());
+		Map<String, Integer> numbers = analiticService.getPairInteger(getDefaultRaffle());
 		assertThat(numbers.get("pair"), equalTo(7));
 		assertThat(numbers.get("unpaired"), equalTo(8));
 	}
 
 	@Test
 	public void getGreaterSequence() {
-		int bigSequence = raffleDataService
-				.getGreaterSequence(getDefaultRaffle());
-		int bigSequence2 = raffleDataService
-				.getGreaterSequence(getDefaultRaffle2());
+		int bigSequence = analiticService.getGreaterSequence(getDefaultRaffle());
+		int bigSequence2 = analiticService.getGreaterSequence(getDefaultRaffle2());
 		assertThat(bigSequence, equalTo(4));
 		assertThat(bigSequence2, equalTo(9));
 	}
 
 	@Test
 	public void getSumRow() {
-		int sumInterval1 = raffleDataService.rowSumTotal(1, 5,
-				getDefaultRaffle(), true);
+		int sumInterval1 = analiticService.rowSumTotal(1, 5, getDefaultRaffle(), true);
 		assertThat(sumInterval1, equalTo(13));
-		int sumInterval2 = raffleDataService.rowSumTotal(6, 10,
-				getDefaultRaffle(), true);
+		int sumInterval2 = analiticService.rowSumTotal(6, 10, getDefaultRaffle(), true);
 		assertThat(sumInterval2, equalTo(25));
-		int sumInterval3 = raffleDataService.rowSumTotal(11, 15,
-				getDefaultRaffle(), true);
+		int sumInterval3 = analiticService.rowSumTotal(11, 15, getDefaultRaffle(), true);
 		assertThat(sumInterval3, equalTo(27));
-		int sumInterval4 = raffleDataService.rowSumTotal(16, 20,
-				getDefaultRaffle(), true);
+		int sumInterval4 = analiticService.rowSumTotal(16, 20, getDefaultRaffle(), true);
 		assertThat(sumInterval4, equalTo(36));
-		int sumInterval5 = raffleDataService.rowSumTotal(21, 25,
-				getDefaultRaffle(), true);
+		int sumInterval5 = analiticService.rowSumTotal(21, 25, getDefaultRaffle(), true);
 		assertThat(sumInterval5, equalTo(91));
 	}
 
 	@Test
 	public void getTotalNumbersRow() {
-		int sumInterval1 = raffleDataService.rowSumTotal(1, 5,
-				getDefaultRaffle(), false);
+		int sumInterval1 = analiticService.rowSumTotal(1, 5, getDefaultRaffle(), false);
 		assertThat(sumInterval1, equalTo(4));
-		int sumInterval2 = raffleDataService.rowSumTotal(6, 10,
-				getDefaultRaffle(), false);
+		int sumInterval2 = analiticService.rowSumTotal(6, 10, getDefaultRaffle(), false);
 		assertThat(sumInterval2, equalTo(3));
-		int sumInterval3 = raffleDataService.rowSumTotal(11, 15,
-				getDefaultRaffle(), false);
+		int sumInterval3 = analiticService.rowSumTotal(11, 15, getDefaultRaffle(), false);
 		assertThat(sumInterval3, equalTo(2));
-		int sumInterval4 = raffleDataService.rowSumTotal(16, 20,
-				getDefaultRaffle(), false);
+		int sumInterval4 = analiticService.rowSumTotal(16, 20, getDefaultRaffle(), false);
 		assertThat(sumInterval4, equalTo(2));
-		int sumInterval5 = raffleDataService.rowSumTotal(21, 25,
-				getDefaultRaffle(), false);
+		int sumInterval5 = analiticService.rowSumTotal(21, 25, getDefaultRaffle(), false);
 		assertThat(sumInterval5, equalTo(4));
 	}
-
 }

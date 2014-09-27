@@ -1,8 +1,5 @@
 package com.koala.schedule;
 
-import java.io.IOException;
-import java.text.ParseException;
-
 import javax.ejb.EJB;
 import javax.ejb.Schedule;
 import javax.ejb.Stateless;
@@ -22,7 +19,7 @@ public class ImportRaffleJob {
 
 	@Schedule(minute = "*/1", second = "*", persistent = false)
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public void execute() throws IOException, ParseException {
+	public void execute() throws Exception {
 		log.info("executing schedule import raffle...");
 		historicService.importHistoryRaffles();
 	}

@@ -8,14 +8,46 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import javax.ejb.Stateless;
-
 import com.koala.constants.ConstantsRaffle;
 import com.koala.entity.Raffle;
+import com.koala.entity.RaffleDataAnalytic;
 
-@Stateless
-public class RaffleDataAnalyticService {
+public class AnalyticService {
 
+	public RaffleDataAnalytic getRaffleDataAnality(Raffle raffle) {
+		RaffleDataAnalytic raffleData = new RaffleDataAnalytic();
+		raffleData.setConcurse(raffle.getConcurse());
+		raffleData.setAverage(averageNumbers(raffle));
+		raffleData.setSum(sumNumbers(raffle));
+		Map<String, Integer> pairUnpaired = getPairInteger(raffle);
+		setTypeNumber(raffleData, pairUnpaired);
+		raffleData.setGreaterSequence(getGreaterSequence(raffle));
+		setSumRows(raffle, raffleData);
+		setTotalNumbersRow(raffle, raffleData);
+		return raffleData;
+	}
+
+	private void setTypeNumber(RaffleDataAnalytic raffleData, Map<String, Integer> pairUnpaired) {
+		raffleData.setPair(pairUnpaired.get("pair"));
+		raffleData.setUnpaired(pairUnpaired.get("unpaired"));
+	}
+
+	private void setSumRows(Raffle raffle, RaffleDataAnalytic raffleData) {
+		raffleData.setSumFirstRow(rowSumTotal(1, 5, raffle, true));
+		raffleData.setSumSecondRow(rowSumTotal(5, 10, raffle, true));
+		raffleData.setSumThirdRow(rowSumTotal(11, 15, raffle, true));
+		raffleData.setSumFourthRow(rowSumTotal(16, 20, raffle, true));
+		raffleData.setSumFivethRow(rowSumTotal(21, 25, raffle, true));
+	}
+
+	private void setTotalNumbersRow(Raffle raffle, RaffleDataAnalytic raffleData) {
+		raffleData.setFirstRow(rowSumTotal(1, 5, raffle, false));
+		raffleData.setSecondRow(rowSumTotal(5, 10, raffle, false));
+		raffleData.setThirdRow(rowSumTotal(11, 15, raffle, false));
+		raffleData.setFourthRow(rowSumTotal(16, 20, raffle, false));
+		raffleData.setFivethRow(rowSumTotal(21, 25, raffle, false));
+	}
+	
 	protected Set<Integer> getDataSet(Raffle raffle) {
 		Set<Integer> numbers = new TreeSet<Integer>();
 		numbers.add(raffle.getBall1());
@@ -111,5 +143,4 @@ public class RaffleDataAnalyticService {
 		}
 		return sumInterval;
 	}
-
 }

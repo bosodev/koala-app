@@ -11,7 +11,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 import com.koala.service.HistoricService;
-import com.koala.service.LotoImportService;
 
 @Stateless
 @Path("/raffle")
@@ -20,20 +19,17 @@ public class RaffleResource {
 	@EJB
 	private HistoricService histService;
 
-	@EJB
-	private LotoImportService lotoImportService;
-
 	@GET
 	@Path("list")
 	@Produces("application/json")
 	public Response importDataRaffle() throws IOException, ParseException {
-		return Response.status(200).entity(lotoImportService.readHtmlFile()).build();
+		return Response.status(200).entity(histService.listAllRaffles()).build();
 	}
 
 	@GET
 	@Path("importdatabase")
 	@Produces("application/json")
-	public Response saveRaffles() throws IOException, ParseException {
+	public Response saveRaffles() throws Exception {
 		histService.importHistoryRaffles();
 		return Response.status(200).entity("Import historic to database successful...").build();
 	}

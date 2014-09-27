@@ -5,15 +5,14 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import com.koala.service.LotoBuildGameService;
+import com.koala.service.BuildGameService;
 
-public class LotoBuildGameServiceTest {
+public class BuildGameServiceTest {
 
-	private LotoBuildGameService lotoBuildGameService = new LotoBuildGameService();
+	private BuildGameService lotoBuildGameService = new BuildGameService();
 
 	@Test
 	public void random() {
 		assertThat(lotoBuildGameService.randomRaffle().getNumbers().size(), equalTo(15));
 	}
-
 }

@@ -1,13 +1,11 @@
 package com.koala.constants;
 
-
-
 public class ConstantsRaffle {
 
 	public static Integer TOTAL_NUMBERS_LOTO_MIN_PLAY = 15;
 
 	public static Integer TOTAL_NUMBERS_LOTO = 25;
-	
+
 	public static String SITE_RESULTS = System.getProperty("caixa.url.loto.resultszip");
 
 	public static String PATH_LOCAL = System.getProperty("file.download.linux");
@@ -27,5 +25,7 @@ public class ConstantsRaffle {
 	public static final Integer[] SECOND_DOZEN_NUMBERS = { 11, 12, 13, 14, 15, 16, 17, 18, 19 };
 
 	public static final Integer[] THIRD_DOZEN_NUMBERS = { 20, 21, 22, 23, 24, 25 };
+
+	public static final String API_LOTOFACIL_URL = "http://confiraloterias.com.br/api/%s/?loteria=lotofacil";
 
 }

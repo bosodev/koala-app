@@ -23,13 +23,13 @@ import com.koala.views.ViewNumberMoreDrawn;
 import com.mysema.query.jpa.impl.JPAQuery;
 
 @Stateless
-public class LotoBuildGameService {
+public class BuildGameService {
 
 	@PersistenceContext(unitName = "primary")
 	private EntityManager entityManager;
 
 	@EJB
-	private LotoImportService lotoImportService;
+	private ImportService lotoImportService;
 
 	@EJB
 	private HistoricService historicService;
@@ -48,8 +48,7 @@ public class LotoBuildGameService {
 	private List<ViewLateByNumber> getNumbersLateMoreZero() {
 		QViewLateByNumber lateNumbers = QViewLateByNumber.viewLateByNumber;
 		JPAQuery query = new JPAQuery(entityManager);
-		return query.from(lateNumbers).where(lateNumbers.total.ne(0))
-				.list(lateNumbers);
+		return query.from(lateNumbers).where(lateNumbers.total.ne(0)).list(lateNumbers);
 	}
 
 	private DataBuildGame mergeWithRandom(List<ViewLateByNumber> lateNumbers) {
@@ -82,8 +81,7 @@ public class LotoBuildGameService {
 
 	public DataBuildGame buildGameWithLessNumbers() {
 		DataBuildGame dataGame = DataGameFactory.buildGameData();
-		List<ViewNumberLessDrawn> lessNumbers = historicService
-				.listNumbersLessDrawn();
+		List<ViewNumberLessDrawn> lessNumbers = historicService.listNumbersLessDrawn();
 		for (ViewNumberLessDrawn number : lessNumbers)
 			dataGame.getNumbers().add(number.getBall());
 		return dataGame;
@@ -91,16 +89,14 @@ public class LotoBuildGameService {
 
 	public DataBuildGame buildGameWithMoreNumbers() {
 		DataBuildGame dataGame = DataGameFactory.buildGameData();
-		List<ViewNumberMoreDrawn> moreNumbers = historicService
-				.listNumbersMoreDrawn();
+		List<ViewNumberMoreDrawn> moreNumbers = historicService.listNumbersMoreDrawn();
 		for (ViewNumberMoreDrawn number : moreNumbers)
 			dataGame.getNumbers().add(number.getBall());
 		return dataGame;
 	}
 
 	public DataBuildGame buildRandomWithOutNumber(Integer withOutNumber) {
-		Integer withOutNumbers[] = new Integer[] { withOutNumber,
-				withOutNumber + 10, withOutNumber + 20 };
+		Integer withOutNumbers[] = new Integer[] { withOutNumber, withOutNumber + 10, withOutNumber + 20 };
 		DataBuildGame dataBuildGame = randomRaffle();
 		dataBuildGame.getNumbers().removeAll(Arrays.asList(withOutNumbers));
 		if (dataBuildGame.getNumbers().size() < 15)
@@ -108,11 +104,9 @@ public class LotoBuildGameService {
 		return dataBuildGame;
 	}
 
-	private DataBuildGame addOtherNumbers(DataBuildGame dataBuildGame,
-			List<Integer> randomWithOutNumbers) {
+	private DataBuildGame addOtherNumbers(DataBuildGame dataBuildGame, List<Integer> randomWithOutNumbers) {
 		for (Integer num : randomRaffle().getNumbers()) {
-			if (!randomWithOutNumbers.contains(num)
-					&& dataBuildGame.getNumbers().size() < 15)
+			if (!randomWithOutNumbers.contains(num) && dataBuildGame.getNumbers().size() < 15)
 				dataBuildGame.getNumbers().add(num);
 		}
 		return dataBuildGame;
@@ -120,16 +114,13 @@ public class LotoBuildGameService {
 
 	public DataBuildGame buildWithPairUnpaired(Integer maxUnpair) {
 		DataBuildGame dataGame = DataGameFactory.buildGameData();
-		DataBuildGame dataGamePair = randomWithPairUnpaired(
-				ConstantsRaffle.PAIR_NUMBERS, 15 - maxUnpair, dataGame);
-		DataBuildGame dataGameUnPaired = randomWithPairUnpaired(
-				ConstantsRaffle.UNPAIRED_NUMBERS, maxUnpair, dataGame);
+		DataBuildGame dataGamePair = randomWithPairUnpaired(ConstantsRaffle.PAIR_NUMBERS, 15 - maxUnpair, dataGame);
+		DataBuildGame dataGameUnPaired = randomWithPairUnpaired(ConstantsRaffle.UNPAIRED_NUMBERS, maxUnpair, dataGame);
 		dataGamePair.getNumbers().addAll(dataGameUnPaired.getNumbers());
 		return dataGamePair;
 	}
 
-	private DataBuildGame randomWithPairUnpaired(Integer pairUnpaired[],
-			Integer maxPairs, DataBuildGame dataGame) {
+	private DataBuildGame randomWithPairUnpaired(Integer pairUnpaired[], Integer maxPairs, DataBuildGame dataGame) {
 		List<Integer> shuffle = Arrays.asList(pairUnpaired);
 		Collections.shuffle(shuffle);
 		for (Integer i = 0; i < maxPairs; i++) {
@@ -170,8 +161,7 @@ public class LotoBuildGameService {
 		return buildDatagame;
 	}
 
-	private DataBuildGame chooseNumbersLastRaffle(List<Integer> pairs,
-			List<Integer> unPairs) {
+	private DataBuildGame chooseNumbersLastRaffle(List<Integer> pairs, List<Integer> unPairs) {
 		DataBuildGame buildgame = DataGameFactory.buildGameData();
 		for (int i = 0; i < 3; i++) {
 			buildgame.getNumbers().add(pairs.get(i));
@@ -191,35 +181,30 @@ public class LotoBuildGameService {
 	}
 
 	private List<Integer> shuffleAllNumbers() {
-		List<Integer> shuffleValues = Arrays
-				.asList(ConstantsRaffle.ALL_NUMBERS);
+		List<Integer> shuffleValues = Arrays.asList(ConstantsRaffle.ALL_NUMBERS);
 		Collections.shuffle(shuffleValues);
 		return shuffleValues;
 	}
 
 	private List<Integer> shuffleFirstDozen() {
-		List<Integer> shuffleValues = Arrays
-				.asList(ConstantsRaffle.FIRST_DOZEN_NUMBERS);
+		List<Integer> shuffleValues = Arrays.asList(ConstantsRaffle.FIRST_DOZEN_NUMBERS);
 		Collections.shuffle(shuffleValues);
 		return shuffleValues;
 	}
 
 	private List<Integer> shuffleSecondDozen() {
-		List<Integer> shuffleValues = Arrays
-				.asList(ConstantsRaffle.SECOND_DOZEN_NUMBERS);
+		List<Integer> shuffleValues = Arrays.asList(ConstantsRaffle.SECOND_DOZEN_NUMBERS);
 		Collections.shuffle(shuffleValues);
 		return shuffleValues;
 	}
 
 	private List<Integer> shuffleThirdDozen() {
-		List<Integer> shuffleValues = Arrays
-				.asList(ConstantsRaffle.THIRD_DOZEN_NUMBERS);
+		List<Integer> shuffleValues = Arrays.asList(ConstantsRaffle.THIRD_DOZEN_NUMBERS);
 		Collections.shuffle(shuffleValues);
 		return shuffleValues;
 	}
 
-	private void sepairNumbers(DataBuildGame buildDatagame,
-			List<Integer> pairs, List<Integer> unPairs) {
+	private void sepairNumbers(DataBuildGame buildDatagame, List<Integer> pairs, List<Integer> unPairs) {
 		for (Integer num : buildDatagame.getNumbers()) {
 			if (num % 2 == 0)
 				pairs.add(num);
@@ -250,21 +235,12 @@ public class LotoBuildGameService {
 		QRaffleDataAnalytic dataAnalytic = QRaffleDataAnalytic.raffleDataAnalytic;
 		JPAQuery subQuery = new JPAQuery(entityManager);
 		JPAQuery query = new JPAQuery(entityManager);
-		RaffleDataAnalytic raffleAnalytic = getAvgTypeNumber(concurses,
-				dataAnalytic, subQuery, query);
-		return buildWithPairUnpaired(Double.valueOf(
-				Math.round(raffleAnalytic.getAvgUnPaired())).intValue());
+		RaffleDataAnalytic raffleAnalytic = getAvgTypeNumber(concurses, dataAnalytic, subQuery, query);
+		return buildWithPairUnpaired(Double.valueOf(Math.round(raffleAnalytic.getAvgUnPaired())).intValue());
 	}
 
-	private RaffleDataAnalytic getAvgTypeNumber(Integer concurses,
-			QRaffleDataAnalytic dataAnalytic, JPAQuery subQuery, JPAQuery query) {
-		RaffleDataAnalytic raffleAnalytic = query
-				.from(dataAnalytic)
-				.where(dataAnalytic.concurse.gt(subQuery.from(dataAnalytic)
-						.singleResult(dataAnalytic.concurse.max()) - concurses))
-				.singleResult(
-						QRaffleDataAnalytic.create(dataAnalytic.pair.avg(),
-								dataAnalytic.unpaired.avg()));
+	private RaffleDataAnalytic getAvgTypeNumber(Integer concurses, QRaffleDataAnalytic dataAnalytic, JPAQuery subQuery, JPAQuery query) {
+		RaffleDataAnalytic raffleAnalytic = query.from(dataAnalytic).where(dataAnalytic.concurse.gt(subQuery.from(dataAnalytic).singleResult(dataAnalytic.concurse.max()) - concurses)).singleResult(QRaffleDataAnalytic.create(dataAnalytic.pair.avg(), dataAnalytic.unpaired.avg()));
 		return raffleAnalytic;
 	}
 

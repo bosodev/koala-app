@@ -12,9 +12,8 @@ import java.util.Map;
 import org.junit.Test;
 
 import com.koala.data.DataObject;
-import com.koala.entity.Login;
 
-public class LotoAnalyticsTest {
+public class AnalyticTest {
 
 	private LotoAnalyticService lotoAnalyticService = new LotoAnalyticService();
 
@@ -139,8 +138,8 @@ public class LotoAnalyticsTest {
 
 	@Test
 	public void statitics() {
-		assertThat(lotoAnalyticService.getTypesNumbersRaffle(lotoAnalyticService.getNumbersRaffle(raffle2Numbers()), true), equalTo(6));
-		assertThat(lotoAnalyticService.getTypesNumbersRaffle(lotoAnalyticService.getNumbersRaffle(raffle2Numbers()), false), equalTo(9));
+		assertThat(lotoAnalyticService.getTypesNumbersRaffle(lotoAnalyticService.getNumbersRaffle(raffle2Numbers()), true), equalTo(7));
+		assertThat(lotoAnalyticService.getTypesNumbersRaffle(lotoAnalyticService.getNumbersRaffle(raffle2Numbers()), false), equalTo(8));
 	}
 
 	@Test

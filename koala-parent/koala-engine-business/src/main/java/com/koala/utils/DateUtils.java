@@ -12,4 +12,9 @@ public class DateUtils {
 		java.util.Date formatedDate = dformat.parse(date);
 		return formatedDate;
 	}
+
+	public static String clearData(String data) {
+		int index = data.indexOf(">");
+		return data.substring(index + 1).replaceAll("</td>", "");
+	}
 }
