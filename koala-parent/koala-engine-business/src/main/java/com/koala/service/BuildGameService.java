@@ -37,7 +37,6 @@ import com.koala.views.ViewNumberLessDrawn;
 import com.koala.views.ViewNumberMoreDrawn;
 import com.mysema.query.jpa.impl.JPAQuery;
 
-
 @Stateless
 @NoArgsConstructor
 @AllArgsConstructor
@@ -124,7 +123,7 @@ public class BuildGameService {
 		Raffle raffle = historicService.getLastRaffle();
 		List<Integer> pairs = new ArrayList<Integer>();
 		List<Integer> unPairs = new ArrayList<Integer>();
-		List<Integer> values = KoalaUtils.asListRaffle(raffle);
+		List<Integer> values = asListRaffle(raffle);
 		sepairNumbers(values, pairs, unPairs);
 		values = chooseNumbersLastRaffle(pairs, unPairs);
 		loadNumbers(values);
@@ -199,7 +198,7 @@ public class BuildGameService {
 		Collections.shuffle(shuffleValues);
 		return shuffleValues;
 	}
-	
+
 	private List<Integer> shuffleFirstDozen() {
 		List<Integer> shuffleValues = Arrays.asList(FIRST_DOZEN_NUMBERS);
 		Collections.shuffle(shuffleValues);
