@@ -6,7 +6,7 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
 import com.koala.entity.Raffle;
-import com.koala.utils.DateUtils;
+import com.koala.utils.KoalaUtils;
 
 public class ImportServiceTest {
 
@@ -31,7 +31,7 @@ public class ImportServiceTest {
 		assertThat(raffle.getBall15(), equalTo(25));
 		
 		assertThat(raffle.getConcurse(), equalTo(1));
-		assertThat(raffle.getDate(), equalTo(DateUtils.formatRaffleDate("29/09/2003")));
+		assertThat(raffle.getDate(), equalTo(KoalaUtils.formatRaffleDate("29/09/2003")));
 
 	}
 

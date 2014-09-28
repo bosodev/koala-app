@@ -1,6 +1,8 @@
 package com.koala.service;
 
-import java.lang.reflect.Method;
+import static com.koala.utils.KoalaUtils.populateRaffleNumbers;
+import static java.lang.String.format;
+
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.ParseException;
@@ -15,13 +17,12 @@ import org.w3c.dom.Node;
 
 import com.koala.constants.ConstantsRaffle;
 import com.koala.entity.Raffle;
-import com.koala.utils.DateUtils;
+import com.koala.utils.KoalaUtils;
 
 @Stateless
 public class ImportService {
 	private static final String JSON = "json";
 	private static final String ENABLE_CONCURSE = "&concurso=";
-	private static final String SET_BALL = "setBall";
 	private static final String REGEX = "\\|";
 	private static final String DOZENS = "dezenas";
 	private static final String DATE = "data";
@@ -80,7 +81,7 @@ public class ImportService {
 	}
 
 	private void setDate(Raffle raffle, String data) throws ParseException {
-		raffle.setDate(DateUtils.formatRaffleDate(data));
+		raffle.setDate(KoalaUtils.formatRaffleDate(data));
 	}
 
 	private void setConcurse(Raffle raffle, String data) {
@@ -90,19 +91,14 @@ public class ImportService {
 	private String getURLFormatted(String format, Integer concurse) {
 		if (concurse != null)
 			return String.format(ConstantsRaffle.API_LOTOFACIL_URL + ENABLE_CONCURSE, format) + concurse;
-		return String.format(ConstantsRaffle.API_LOTOFACIL_URL, format);
+		return format(ConstantsRaffle.API_LOTOFACIL_URL, format);
 	}
 
 	public Raffle setDozens(Raffle raffle, String data) throws Exception {
 		String[] numbers = data.split(REGEX);
 		for (int i = 0; i < numbers.length; i++)
-			setRaffleData(raffle, Integer.valueOf(numbers[i]), i + 1);
+			populateRaffleNumbers(raffle, Integer.valueOf(numbers[i]), i);
 		return raffle;
-	}
-
-	private void setRaffleData(Raffle raffle, int value, int sequence) throws Exception {
-		Method method = raffle.getClass().getMethod(SET_BALL + sequence, new Class[] { Integer.class });
-		method.invoke(raffle, value);
 	}
 
 	// TODO NOT IMPLEMENT YET

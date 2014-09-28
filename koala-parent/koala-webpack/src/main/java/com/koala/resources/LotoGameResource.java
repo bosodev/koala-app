@@ -1,8 +1,5 @@
 package com.koala.resources;
 
-import java.io.IOException;
-import java.text.ParseException;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -30,42 +27,42 @@ public class LotoGameResource {
 	@GET
 	@Path("random/{order}")
 	@Produces("application/json")
-	public Response buildRaffleGame(@PathParam("order") Boolean order) throws IOException, ParseException {
+	public Response buildRaffleGame(@PathParam("order") Boolean order) throws Exception {
 		return Response.status(200).entity(buildGameService.randomRaffle()).build();
 	}
 
 	@GET
 	@Path("latesWithRandom")
 	@Produces("application/json")
-	public Response buildlatesWithRandom() throws IOException, ParseException {
+	public Response buildlatesWithRandom() throws Exception {
 		return Response.status(200).entity(buildGameService.buildGameWithLateNumbers()).build();
 	}
 
 	@GET
 	@Path("moreNumber")
 	@Produces("application/json")
-	public Response buildMoreNumbersRaffle() throws IOException, ParseException {
+	public Response buildMoreNumbersRaffle() throws Exception {
 		return Response.status(200).entity(buildGameService.buildGameWithMoreNumbers()).build();
 	}
 
 	@GET
 	@Path("lessNumber")
 	@Produces("application/json")
-	public Response buildLessNumbersRaffle() throws IOException, ParseException {
+	public Response buildLessNumbersRaffle() throws Exception {
 		return Response.status(200).entity(buildGameService.buildGameWithLessNumbers()).build();
 	}
 
 	@GET
 	@Path("randomWithoutNumber/{number}")
 	@Produces("application/json")
-	public Response buildRandomWithOutNumber(@PathParam("number") Integer number) throws IOException, ParseException {
+	public Response buildRandomWithOutNumber(@PathParam("number") Integer number) throws Exception {
 		return Response.status(200).entity(buildGameService.buildRandomWithOutNumber(number)).build();
 	}
 
 	@GET
 	@Path("randomPairUnpaired/{number}")
 	@Produces("application/json")
-	public Response buildWithPairUnpaired(@PathParam("number") Integer number) throws IOException, ParseException {
+	public Response buildWithPairUnpaired(@PathParam("number") Integer number) throws Exception {
 		if (number < 3 || number > 13)
 			return Response.status(Status.PRECONDITION_FAILED).entity("Choose numbers beetwen 3 and 13 ").build();
 		return Response.status(200).entity(buildGameService.buildWithPairUnpaired(number)).build();
@@ -74,14 +71,14 @@ public class LotoGameResource {
 	@GET
 	@Path("buildBasedLastRaffle")
 	@Produces("application/json")
-	public Response buildRandomWithOutNumber() throws IOException, ParseException {
+	public Response buildRandomWithOutNumber() throws Exception {
 		return Response.status(200).entity(buildGameService.buildGameBasedLastRaffle()).build();
 	}
 
 	@GET
 	@Path("buildBasedDozens/{firstDozen}/{thirdDozen}")
 	@Produces("application/json")
-	public Response buildBasedDozens(@PathParam("firstDozen") Integer firstDozen, @PathParam("thirdDozen") Integer thirdDozen) throws IOException, ParseException {
+	public Response buildBasedDozens(@PathParam("firstDozen") Integer firstDozen, @PathParam("thirdDozen") Integer thirdDozen) throws Exception {
 		if (firstDozen < 4 || firstDozen > 8)
 			return Response.status(Status.PRECONDITION_FAILED).entity("Choose 4 or 8 numbers ").build();
 		if (thirdDozen < 2 || thirdDozen > 3)
@@ -92,7 +89,7 @@ public class LotoGameResource {
 	@GET
 	@Path("avgLastConcurses/{lastConcurses}")
 	@Produces("application/json")
-	public Response getAVGLastConcurses(@PathParam("lastConcurses") Integer lastConcurses) {
+	public Response getAVGLastConcurses(@PathParam("lastConcurses") Integer lastConcurses) throws Exception {
 		return Response.status(200).entity(buildGameService.getAVGPairsByConcurses(lastConcurses)).build();
 	}
 	
