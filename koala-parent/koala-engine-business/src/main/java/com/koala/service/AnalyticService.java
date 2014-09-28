@@ -8,10 +8,13 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import javax.ejb.Stateless;
+
 import com.koala.constants.ConstantsRaffle;
 import com.koala.entity.Raffle;
 import com.koala.entity.RaffleDataAnalytic;
 
+@Stateless
 public class AnalyticService {
 
 	public RaffleDataAnalytic getRaffleDataAnality(Raffle raffle) {

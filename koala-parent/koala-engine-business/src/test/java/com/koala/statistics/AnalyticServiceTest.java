@@ -53,6 +53,26 @@ public class AnalyticServiceTest {
 		raffle.setBall15(25);
 		return raffle;
 	}
+	
+	static Raffle getDefaultRaffle3() {
+		Raffle raffle = new Raffle();
+		raffle.setBall1(1);
+		raffle.setBall2(3);
+		raffle.setBall3(4);
+		raffle.setBall4(5);
+		raffle.setBall5(6);
+		raffle.setBall6(9);
+		raffle.setBall7(11);
+		raffle.setBall8(12);
+		raffle.setBall9(15);
+		raffle.setBall10(18);
+		raffle.setBall11(19);
+		raffle.setBall12(21);
+		raffle.setBall13(22);
+		raffle.setBall14(23);
+		raffle.setBall15(25);
+		return raffle;
+	}
 
 	@Test
 	public void getSumNumbers() {
@@ -75,8 +95,10 @@ public class AnalyticServiceTest {
 	public void getGreaterSequence() {
 		int bigSequence = analiticService.getGreaterSequence(getDefaultRaffle());
 		int bigSequence2 = analiticService.getGreaterSequence(getDefaultRaffle2());
+		int bigSequence3 = analiticService.getGreaterSequence(getDefaultRaffle3());
 		assertThat(bigSequence, equalTo(4));
 		assertThat(bigSequence2, equalTo(9));
+		assertThat(bigSequence3, equalTo(4));
 	}
 
 	@Test

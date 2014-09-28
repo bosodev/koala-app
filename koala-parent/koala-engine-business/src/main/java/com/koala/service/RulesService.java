@@ -34,17 +34,18 @@ public class RulesService {
 
 	protected void filterRule(RaffleDataAnalytic analitic, RaffleDataAnalytic dataAnalitic) throws RuleException {
 		if (analitic.getAverage().equals(dataAnalitic.getAverage()))
-			throw new RuleException("Media de numeros iguais, sorteio: " + dataAnalitic.getConcurse());
+			throw new RuleException("Media de numeros iguais, sorteio: " + analitic.getConcurse() +" Media :"+ analitic.getAverage());
 		if (analitic.getSum().equals(dataAnalitic.getSum()))
-			throw new RuleException("Somatoria dos numeros iguais, sorteio: " + dataAnalitic.getConcurse());
+			throw new RuleException("Somatoria dos numeros iguais, sorteio: " + analitic.getConcurse()+" Somatoria :"+analitic.getSum());
 		if (analitic.getGreaterSequence().equals(dataAnalitic.getGreaterSequence()))
-			throw new RuleException("Maior sequencia iguais, sorteio: " + dataAnalitic.getConcurse());
+			throw new RuleException("Maior sequencia iguais, sorteio: " + analitic.getConcurse()+ " Quantidade da sequencia :" + analitic.getGreaterSequence());
 		if (isPairUnpairedEquals(analitic, dataAnalitic))
-			throw new RuleException("Pares e impares iguais, sorteio: " + dataAnalitic.getConcurse());
+			throw new RuleException("Pares e impares iguais, sorteio: " + analitic.getConcurse() +" Pares :"+ analitic.getPair() +"Impares :"+analitic.getUnpaired());
 		if (isQuantityNumberRowsEquals(analitic, dataAnalitic))
-			throw new RuleException("Quantidade de numeros em uma linha e igual, sorteio: " + dataAnalitic.getConcurse());
-		if (isAvgPairUnpairedEquals(analitic, dataAnalitic))
-			throw new RuleException("Quantidade de numeros em uma linha e igual, sorteio: " + dataAnalitic.getConcurse());
+			throw new RuleException("Quantidade de numeros em uma linha e igual, sorteio: " + analitic.getConcurse());
+		//TODO verificar pq nao esta populando
+		//if (isAvgPairUnpairedEquals(analitic, dataAnalitic))
+			//throw new RuleException("Quantidade de numeros em uma linha e igual, sorteio: " + dataAnalitic.getConcurse());
 
 	}
 
@@ -70,20 +71,20 @@ public class RulesService {
 	public Raffle getDefaultRaffle() {
 		Raffle raffle = new Raffle();
 		raffle.setBall1(1);
-		raffle.setBall2(3);
-		raffle.setBall3(4);
+		raffle.setBall2(2);
+		raffle.setBall3(3);
 		raffle.setBall4(5);
 		raffle.setBall5(6);
-		raffle.setBall6(9);
-		raffle.setBall7(10);
-		raffle.setBall8(12);
-		raffle.setBall9(15);
-		raffle.setBall10(16);
-		raffle.setBall11(20);
+		raffle.setBall6(7);
+		raffle.setBall7(9);
+		raffle.setBall8(11);
+		raffle.setBall9(13);
+		raffle.setBall10(14);
+		raffle.setBall11(15);
 		raffle.setBall12(21);
 		raffle.setBall13(22);
 		raffle.setBall14(23);
-		raffle.setBall15(25);
+		raffle.setBall15(24);
 		return raffle;
 	}
 }
