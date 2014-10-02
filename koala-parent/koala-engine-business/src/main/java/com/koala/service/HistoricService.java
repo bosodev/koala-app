@@ -7,14 +7,14 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.koala.entity.QRaffle;
-import com.koala.entity.Raffle;
-import com.koala.views.QViewLateByNumber;
-import com.koala.views.QViewNumberLessDrawn;
-import com.koala.views.QViewNumberMoreDrawn;
-import com.koala.views.ViewLateByNumber;
-import com.koala.views.ViewNumberLessDrawn;
-import com.koala.views.ViewNumberMoreDrawn;
+import com.koala.entity.raffle.QRaffle;
+import com.koala.entity.raffle.Raffle;
+import com.koala.view.QViewLateByNumber;
+import com.koala.view.QViewNumberLessDrawn;
+import com.koala.view.QViewNumberMoreDrawn;
+import com.koala.view.ViewLateByNumber;
+import com.koala.view.ViewNumberLessDrawn;
+import com.koala.view.ViewNumberMoreDrawn;
 import com.mysema.query.jpa.impl.JPAQuery;
 
 @Stateless

@@ -12,6 +12,8 @@
 		<module>koala-core</module>
 		<module>koala-webpack</module>
 		<module>koala-engine-business</module>
+		<module>koala-entity</module>
+		<module>koala-persistence-repo</module>
 	</modules>
 	<properties>
 

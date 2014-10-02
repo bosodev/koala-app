@@ -4,6 +4,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.koala.entity.login.Login;
+import com.koala.entity.login.QLogin;
 import com.mysema.query.jpa.impl.JPAQuery;
 
 @Stateless

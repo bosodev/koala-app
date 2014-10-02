@@ -4,10 +4,10 @@ import static com.koala.constants.ConstantsRaffle.ALL_NUMBERS;
 import static com.koala.constants.ConstantsRaffle.FIRST_DOZEN_NUMBERS;
 import static com.koala.constants.ConstantsRaffle.SECOND_DOZEN_NUMBERS;
 import static com.koala.constants.ConstantsRaffle.THIRD_DOZEN_NUMBERS;
-import static com.koala.entity.QRaffleDataAnalytic.raffleDataAnalytic;
+import static com.koala.entity.raffle.QRaffleDataAnalytic.raffleDataAnalytic;
 import static com.koala.utils.KoalaUtils.asListRaffle;
 import static com.koala.utils.KoalaUtils.populateRaffleNumbers;
-import static com.koala.views.QViewLateByNumber.viewLateByNumber;
+import static com.koala.view.QViewLateByNumber.viewLateByNumber;
 import static java.lang.Double.valueOf;
 import static java.lang.Math.round;
 import static java.util.Arrays.asList;
@@ -27,14 +27,13 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import com.koala.constants.ConstantsRaffle;
-import com.koala.entity.QRaffleDataAnalytic;
-import com.koala.entity.Raffle;
-import com.koala.entity.RaffleDataAnalytic;
-import com.koala.utils.KoalaUtils;
-import com.koala.views.QViewLateByNumber;
-import com.koala.views.ViewLateByNumber;
-import com.koala.views.ViewNumberLessDrawn;
-import com.koala.views.ViewNumberMoreDrawn;
+import com.koala.entity.raffle.QRaffleDataAnalytic;
+import com.koala.entity.raffle.Raffle;
+import com.koala.entity.raffle.RaffleDataAnalytic;
+import com.koala.view.QViewLateByNumber;
+import com.koala.view.ViewLateByNumber;
+import com.koala.view.ViewNumberLessDrawn;
+import com.koala.view.ViewNumberMoreDrawn;
 import com.mysema.query.jpa.impl.JPAQuery;
 
 @Stateless

@@ -1,10 +1,10 @@
 package com.koala.service;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.doReturn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +16,10 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.koala.entity.Raffle;
-import com.koala.service.BuildGameService;
-import com.koala.service.HistoricService;
-import com.koala.views.ViewLateByNumber;
-import com.koala.views.ViewNumberLessDrawn;
-import com.koala.views.ViewNumberMoreDrawn;
+import com.koala.entity.raffle.Raffle;
+import com.koala.view.ViewLateByNumber;
+import com.koala.view.ViewNumberLessDrawn;
+import com.koala.view.ViewNumberMoreDrawn;
 
 public class BuildGameServiceTest {
 

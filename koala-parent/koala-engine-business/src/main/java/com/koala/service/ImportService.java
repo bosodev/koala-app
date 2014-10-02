@@ -16,7 +16,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import com.koala.constants.ConstantsRaffle;
-import com.koala.entity.Raffle;
+import com.koala.entity.raffle.Raffle;
 import com.koala.utils.KoalaUtils;
 
 @Stateless

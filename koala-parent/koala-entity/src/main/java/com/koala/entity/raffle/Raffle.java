@@ -1,4 +1,4 @@
-package com.koala.entity;
+package com.koala.entity.raffle;
 
 import java.io.Serializable;
 import java.util.Date;

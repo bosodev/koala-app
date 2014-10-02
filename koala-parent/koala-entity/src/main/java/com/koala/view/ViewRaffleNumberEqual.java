@@ -1,4 +1,4 @@
-package com.koala.views;
+package com.koala.view;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

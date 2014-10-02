@@ -5,7 +5,7 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import com.koala.entity.Raffle;
+import com.koala.entity.raffle.Raffle;
 import com.koala.utils.KoalaUtils;
 
 public class ImportServiceTest {

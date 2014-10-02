@@ -1,4 +1,4 @@
-package com.koala.login;
+package com.koala.entity.login;
 
 import java.util.Date;
 

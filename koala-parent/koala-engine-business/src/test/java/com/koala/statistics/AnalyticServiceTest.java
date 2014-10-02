@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import com.koala.entity.Raffle;
+import com.koala.entity.raffle.Raffle;
 import com.koala.service.AnalyticService;
 
 public class AnalyticServiceTest {

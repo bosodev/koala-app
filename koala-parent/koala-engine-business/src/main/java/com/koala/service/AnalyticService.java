@@ -11,8 +11,8 @@ import java.util.TreeSet;
 import javax.ejb.Stateless;
 
 import com.koala.constants.ConstantsRaffle;
-import com.koala.entity.Raffle;
-import com.koala.entity.RaffleDataAnalytic;
+import com.koala.entity.raffle.Raffle;
+import com.koala.entity.raffle.RaffleDataAnalytic;
 
 @Stateless
 public class AnalyticService {
