@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import com.koala.entity.raffle.Raffle;
 import com.koala.exceptions.RuleException;
 import com.koala.service.BuildGameService;
 import com.koala.service.RulesService;
@@ -93,10 +94,13 @@ public class LotoGameResource {
 		return Response.status(200).entity(buildGameService.getAVGPairsByConcurses(lastConcurses)).build();
 	}
 	
+	
+	//TODO Validar com um jogo feito pelo usuario
 	@GET
 	@Path("validator/{range}")
 	@Produces("application/json")
 	public Response validator(@PathParam("range") Integer range) throws RuleException {
-		return Response.status(200).entity(rulesService.validator(rulesService.getDefaultRaffle(), range)).build();
+		return null;
+		//return Response.status(200).entity(rulesService.validator(rulesService.getDefaultRaffle(), range)).build();
 	}
 }
