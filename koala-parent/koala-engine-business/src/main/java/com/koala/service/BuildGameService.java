@@ -1,10 +1,10 @@
 package com.koala.service;
 
+import static com.entity.QRaffleDataAnalytic.raffleDataAnalytic;
 import static com.koala.constants.ConstantsRaffle.ALL_NUMBERS;
 import static com.koala.constants.ConstantsRaffle.FIRST_DOZEN_NUMBERS;
 import static com.koala.constants.ConstantsRaffle.SECOND_DOZEN_NUMBERS;
 import static com.koala.constants.ConstantsRaffle.THIRD_DOZEN_NUMBERS;
-import static com.koala.entity.raffle.QRaffleDataAnalytic.raffleDataAnalytic;
 import static com.koala.utils.KoalaUtils.asListRaffle;
 import static com.koala.utils.KoalaUtils.populateRaffleNumbers;
 import static com.koala.view.QViewLateByNumber.viewLateByNumber;
@@ -26,10 +26,10 @@ import javax.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import com.entity.QRaffleDataAnalytic;
+import com.entity.Raffle;
+import com.entity.RaffleDataAnalytic;
 import com.koala.constants.ConstantsRaffle;
-import com.koala.entity.raffle.QRaffleDataAnalytic;
-import com.koala.entity.raffle.Raffle;
-import com.koala.entity.raffle.RaffleDataAnalytic;
 import com.koala.view.QViewLateByNumber;
 import com.koala.view.ViewLateByNumber;
 import com.koala.view.ViewNumberLessDrawn;

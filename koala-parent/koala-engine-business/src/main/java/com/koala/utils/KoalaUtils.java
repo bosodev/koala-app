@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.koala.entity.raffle.Raffle;
+import com.entity.Raffle;
 
 public class KoalaUtils {
 

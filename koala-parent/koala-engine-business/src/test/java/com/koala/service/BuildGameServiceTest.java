@@ -16,7 +16,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.koala.entity.raffle.Raffle;
+import com.entity.Raffle;
 import com.koala.view.ViewLateByNumber;
 import com.koala.view.ViewNumberLessDrawn;
 import com.koala.view.ViewNumberMoreDrawn;

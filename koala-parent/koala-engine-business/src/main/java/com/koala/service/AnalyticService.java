@@ -10,9 +10,9 @@ import java.util.TreeSet;
 
 import javax.ejb.Stateless;
 
+import com.entity.Raffle;
+import com.entity.RaffleDataAnalytic;
 import com.koala.constants.ConstantsRaffle;
-import com.koala.entity.raffle.Raffle;
-import com.koala.entity.raffle.RaffleDataAnalytic;
 
 @Stateless
 public class AnalyticService {

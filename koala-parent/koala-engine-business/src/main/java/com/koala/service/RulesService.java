@@ -6,9 +6,9 @@ import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.koala.entity.raffle.QRaffleDataAnalytic;
-import com.koala.entity.raffle.Raffle;
-import com.koala.entity.raffle.RaffleDataAnalytic;
+import com.entity.QRaffleDataAnalytic;
+import com.entity.Raffle;
+import com.entity.RaffleDataAnalytic;
 import com.koala.exceptions.RuleException;
 import com.mysema.query.jpa.impl.JPAQuery;
 

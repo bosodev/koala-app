@@ -1,4 +1,4 @@
-package com.koala.entity.raffle;
+package com.entity;
 
 import java.io.Serializable;
 
